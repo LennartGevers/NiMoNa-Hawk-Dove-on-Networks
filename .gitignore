@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# jupyter Notebooks (only used for testing)
+.ipynb
+
+# Pdf output files (will be generated in mass during testing and shouldn't be committed)
+.pdf
