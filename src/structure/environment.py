@@ -16,7 +16,7 @@ def generate_environment(count, max_dist, seed=False):
     
     nodes = []
 
-    for i in range(0, count):
+    for _ in range(0, count):
         x_i = np.random.random()
         y_i = np.random.random()
 
