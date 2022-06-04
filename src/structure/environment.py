@@ -1,7 +1,6 @@
 import numpy as np
-
-from node import network_node
-from visualize import visualize
+from src.structure.node import network_node
+from src.structure.visualize import visualize
 
 def update_connections(new_node, nodes, max_dist):
     for node in nodes:
