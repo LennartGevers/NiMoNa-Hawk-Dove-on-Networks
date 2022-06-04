@@ -4,8 +4,6 @@ from src.structure.visualize import visualize
 from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamics
 from src.model.replicator_dynamics.payoff_parameter_functions import constant_harm, constant_reward
 
-from time import time
-
 #Modeling of the implementation of a heat-equation-like migration of species in the
 #hawk dove game.
 
@@ -25,8 +23,6 @@ T = 100
 #Developmental Functions and usage per development
 
 #Simulation:
-timestamp = time()
-
 environment = generate_environment(n, d_max, seed=seed)
 
 harm_function = constant_harm(1.5)
