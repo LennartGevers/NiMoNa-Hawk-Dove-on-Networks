@@ -36,7 +36,7 @@ def generate_environment(count, max_dist, seed=False):
     return nodes
 
 def normalize_nodes(nodes):
-    #normalizes the vector of hawks and doves in respect to the normalization condition
+    #normalizes the vector of hawks and doves of all nodes in respect to the normalization condition
     #that hawks + doves = 1 while maintaining the ratio of hawks and doves in a node.
     for node in nodes:
 
