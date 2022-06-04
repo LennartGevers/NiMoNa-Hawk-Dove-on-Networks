@@ -37,7 +37,7 @@ def generate_environment(count, max_dist, seed=False):
 def get_minimum_distance(nodes):
     min_dists = [np.sqrt(2)]
     for node in nodes:
-        if(len(nodes.get_connections()) > 0):
+        if(len(node.get_connections()) > 0):
             min_dists.append(min([distance for _,distance in node.get_connections()]))
 
     return min(min_dists)
