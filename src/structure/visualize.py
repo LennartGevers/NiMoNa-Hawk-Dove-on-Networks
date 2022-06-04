@@ -26,7 +26,7 @@ def draw_connection(node_1, node_2):
     x1, y1 = node_1.get_position()
     x2, y2 = node_2.get_position()
 
-    plt.plot([x1, x2], [y1, y2], marker='', color='darkgrey', linewidth=0.1)
+    plt.plot([x1, x2], [y1, y2], marker='', color='black', linewidth=0.1)
 
 def visualize(nodes, visualization_method, markersize=32, statistics=False, show=True):
     plt.clf()
