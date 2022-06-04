@@ -1,3 +1,4 @@
+from turtle import distance
 import numpy as np
 from src.structure.node import network_node
 from src.structure.visualize import visualize
@@ -31,7 +32,15 @@ def generate_environment(count, max_dist, seed=False):
 
         nodes.append(node_i)
 
-
     return nodes
+
+def get_minimum_distance(nodes):
+    min_dists = [np.sqrt(2)]
+    for node in nodes:
+        if(len(nodes.get_connections()) > 0):
+            min_dists.append(min([distance for _,distance in node.get_connections()]))
+
+    return min(min_dists)
+
 
         
