@@ -20,10 +20,13 @@ def generate_environment(count, max_dist, seed=False):
         x_i = np.random.random()
         y_i = np.random.random()
 
-        #val_i= ((x_i-0.5)**2 + (y_i-0.5)**2)
-        val_i = 0.5 #np.random.random()
+        val_i = np.random.random()
 
-        node_i = network_node(x_i, y_i, val_i)
+        #Value Vector (x_1, x_2) where x_1 is doves and x_2 is hawks
+
+        val_vector = (val_i, 1 - val_i)
+
+        node_i = network_node(x_i, y_i, val_vector)
 
         update_connections(node_i, nodes, max_dist)
 

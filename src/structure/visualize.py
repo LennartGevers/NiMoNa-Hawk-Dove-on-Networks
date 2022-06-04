@@ -2,19 +2,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
-from numpy import block
-
 def get_stats(nodes):
     values = []
     for node in nodes:
-        values.append(node.get_value())
+        values.append(node.get_value()[0])
 
     np_values = np.array(values)
     return np.mean(np_values), np.std(np_values), np.sum(np_values)
 
 def draw_node(node, markersize=32):
     x, y = node.get_position()
-    val = node.get_value()
+    val = node.get_value()[0]
 
     plt.plot(x,y, marker='.', markersize=markersize*abs(val))
 
