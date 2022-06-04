@@ -22,7 +22,7 @@ def generate_environment(count, max_dist, seed=False):
 
         val_i = np.random.random()
 
-        #Value Vector (x_1, x_2) where x_1 is doves and x_2 is hawks
+        #Value Vector (x_1, x_2) where x_1 is hawks and x_2 is doves
 
         val_vector = (val_i, 1 - val_i)
 
@@ -43,8 +43,8 @@ def normalize_nodes(nodes, b = 0):
     
     for node in nodes:
 
-        value_dove, value_hawk = node.get_value()
+        value_hawk, value_dove = node.get_value()
         sum_hawk_dove = value_dove + value_hawk
-        node.set_value(((value_dove+b)/ (sum_hawk_dove + b), (value_hawk + b)/(sum_hawk_dove + b)))
+        node.set_value(((value_hawk+b)/ (sum_hawk_dove + b), (value_dove + b)/(sum_hawk_dove + b)))
 
         

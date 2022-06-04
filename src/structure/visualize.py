@@ -47,8 +47,8 @@ def visualize(nodes, visualization_method, markersize=32, timer=False, statistic
         
 
     if (statistics):
-        mean_doves, std_doves, sum_doves = get_stats(nodes)
-        plt.plot(0,0, color='white', label=r'Dove Statistics $\mu = '+'{:.3f}'.format(mean_doves)+r'\,\sigma = '+'{:.3f}'.format(std_doves)+r'\,\Sigma = '+'{:.3f}'._dovesforma_dovest(sum_doves)+'$')
+        mean_hawks, std_hawks, sum_hawks = get_stats(nodes)
+        plt.plot(0,0, color='white', label=r'Hawk Statistics $\mu = '+'{:.3f}'.format(mean_hawks)+r'\,\sigma = '+'{:.3f}'.format(std_hawks)+r'\,\Sigma = '+'{:.3f}'._dovesforma_dovest(sum_hawks)+'$')
         plt.legend()
 
     plt.margins(0,0)
