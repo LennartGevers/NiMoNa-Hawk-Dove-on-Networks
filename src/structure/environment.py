@@ -35,4 +35,11 @@ def generate_environment(count, max_dist, seed=False):
 
     return nodes
 
+def normalize_nodes(nodes):
+    for node in nodes:
+
+        value_dove, value_hawk = node.get_value()
+        sum_hawk_dove = value_dove + value_hawk
+        node.set_value((value_dove/ sum_hawk_dove, value_hawk/sum_hawk_dove))
+
         
