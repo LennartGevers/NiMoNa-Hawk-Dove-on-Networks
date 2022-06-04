@@ -43,7 +43,7 @@ def visualize(nodes, visualization_method, markersize=32, timer=False, statistic
             draw_node_size(node, markersize=markersize)
 
         else:
-            raise RuntimeError("visualization_method has to be either greyscale or size")
+            raise RuntimeError('visualization_method has to be either greyscale or size. "{0}" was given.'.format(visualization_method))
         
 
     if (statistics):
