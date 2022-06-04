@@ -9,7 +9,6 @@ def _get_payoff_matrix(reward, harm):
 
 def _replicate(value__vector, reward, harm, b=0):
     x = np.array(value__vector)
-
     M = _get_payoff_matrix(reward, harm)
 
     payoffs = M.dot(x)
@@ -23,10 +22,10 @@ def _replicate(value__vector, reward, harm, b=0):
 def replicator_dynamics(nodes, t, reward_function, harm_function, b=0):
 
     for node in nodes:
-        value_vector = node.get_values()
+        value_vector = node.get_value()
         position = node.get_position()
 
-        node.set_values( _replicate( value_vector[1], 
+        node.set_value( _replicate( value_vector, 
                                     reward_function(t, value_vector, position),
                                     harm_function(t, value_vector, position), b=b))
 
