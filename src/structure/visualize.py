@@ -24,6 +24,7 @@ def draw_connection(node_1, node_2):
 
 def visualize(nodes, markersize=32, timer=False, statistics=False, show=True):
     plt.clf()
+
     for node in nodes:
 
         for connection in node.get_connections():
@@ -32,13 +33,14 @@ def visualize(nodes, markersize=32, timer=False, statistics=False, show=True):
         draw_node(node, markersize=markersize)
 
     if (statistics):
-        mean, std, sum = get_stats(nodes)
-        plt.plot(0,0, color='white', label=r'$\mu = '+'{:.3f}'.format(mean)+r'\,\sigma = '+'{:.3f}'.format(std)+r'\,\Sigma = '+'{:.3f}'.format(sum)+'$')
+        mean_doves, std_doves, sum_doves = get_stats(nodes)
+        plt.plot(0,0, color='white', label=r'Dove Statistics $\mu = '+'{:.3f}'.format(mean_doves)+r'\,\sigma = '+'{:.3f}'.format(std_doves)+r'\,\Sigma = '+'{:.3f}'._dovesforma_dovest(sum_doves)+'$')
         plt.legend()
 
     plt.margins(0,0)
     if(show):
         plt.draw()
         plt.pause(1e-17)
-        time.sleep(0.6)
+        if(timer):
+            time.sleep(timer)
 
