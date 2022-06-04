@@ -28,7 +28,7 @@ def draw_connection(node_1, node_2):
 
     plt.plot([x1, x2], [y1, y2], marker='', color='darkgrey', linewidth=0.1)
 
-def visualize(nodes, visualization_method, markersize=32, timer=False, statistics=False, show=True):
+def visualize(nodes, visualization_method, markersize=32, statistics=False, show=True):
     plt.clf()
 
     for node in nodes:
@@ -48,13 +48,10 @@ def visualize(nodes, visualization_method, markersize=32, timer=False, statistic
 
     if (statistics):
         mean_hawks, std_hawks, sum_hawks = get_stats(nodes)
-        plt.plot(0,0, color='white', label=r'Hawk Statistics $\mu = '+'{:.3f}'.format(mean_hawks)+r'\,\sigma = '+'{:.3f}'.format(std_hawks)+r'\,\Sigma = '+'{:.3f}'._dovesforma_dovest(sum_hawks)+'$')
+        plt.plot(0,0, color='white', label=r'Hawk Statistics $\mu = '+'{:.3f}'.format(mean_hawks)+r'\,\sigma = '+'{:.3f}'.format(std_hawks)+r'\,\Sigma = '+'{:.3f}'.format(sum_hawks)+'$')
         plt.legend()
 
     plt.margins(0,0)
     if(show):
-        plt.draw()
-        plt.pause(1e-17)
-        if(timer):
-            time.sleep(timer)
+        plt.show()
 
