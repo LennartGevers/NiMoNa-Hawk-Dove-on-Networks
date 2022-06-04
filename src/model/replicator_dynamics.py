@@ -7,8 +7,8 @@ def _get_payoff_matrix(reward, harm):
         [0,                     0.5*reward]
         ])
 
-def _replicate(dove_value, reward, harm, b=0):
-    x = np.array(1 - dove_value, dove_value)
+def _replicate(value__vector, reward, harm, b=0):
+    x = np.array(value__vector)
 
     M = _get_payoff_matrix(reward, harm)
 
