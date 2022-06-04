@@ -1,8 +1,8 @@
 from src.structure.environment import generate_environment, normalize_nodes
 from src.structure.visualize import visualize
-from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamics
 
-from src.model.replicator_dynamics.constant_payoff import harm, reward
+from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamics
+from src.model.replicator_dynamics.payoff_parameter_functions import constant_harm, constant_reward
 
 from time import time
 
@@ -29,8 +29,8 @@ timestamp = time()
 
 environment = generate_environment(n, d_max, seed=seed)
 
-harm_function = harm(1.5)
-reward_function = reward(1)
+harm_function = constant_harm(1.5)
+reward_function = constant_reward(1)
 
 for t in range(0,T):
     replicator_dynamics(environment, t, reward_function, harm_function, 3)
