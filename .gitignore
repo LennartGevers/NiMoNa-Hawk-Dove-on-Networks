@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # jupyter Notebooks (only used for testing)
-.ipynb
+**.ipynb
 
 # Pdf output files (will be generated in mass during testing and shouldn't be committed)
 .pdf
