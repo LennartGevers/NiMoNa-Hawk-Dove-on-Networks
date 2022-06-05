@@ -8,4 +8,4 @@ def norm_environment(nodes):
     
     for node in nodes:
         unnormed_hawk, unnormed_dove = node.get_value()
-        node.set_value(unnormed_hawk/sum_species, unnormed_dove/sum_species)
+        node.set_value((unnormed_hawk/sum_species, unnormed_dove/sum_species))
