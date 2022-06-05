@@ -17,3 +17,9 @@ def periodic_reward(a, T, a_0):
         return a * np.sin(2 * np.pi * (t/T)) + a_0
 
     return reward
+
+def periodic_reward_heigth_amplitude(a, T, a_0):
+    def reward(t, value_vector, position):
+        return a*(position[0]) * np.sin(2 * np.pi * (t/T)) + a_0
+
+    return reward
