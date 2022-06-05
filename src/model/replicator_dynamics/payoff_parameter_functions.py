@@ -12,8 +12,8 @@ def constant_reward(v):
 
     return reward
 
-def periodic_reward(a, T):
+def periodic_reward(a, T, a_0):
     def reward(t, value_vector, position):
-        return a * np.sin(2 * np.pi * (t/T))
+        return a * np.sin(2 * np.pi * (t/T)) + a_0
 
     return reward
