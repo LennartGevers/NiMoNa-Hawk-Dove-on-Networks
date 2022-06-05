@@ -19,13 +19,22 @@ def heat_equation(nodes, a_hawk, a_dove, minimum_distance):
         hawk_update = 0
         dove_update = 0
 
-        for connecting_node, distance in node.get_connections():
-            connecting_hawk_value, connecting_dove_value = connecting_node.get_value()
+        n_connections = len(node.get_connections())
 
-            hawk_update += apply_heat_equation(hawk_value, connecting_hawk_value, a_hawk, distance/minimum_distance)
-            dove_update += apply_heat_equation(dove_value, connecting_dove_value, a_dove, distance/minimum_distance)
+        if(n_connections):
 
-        new_values.append( (hawk_value + hawk_update, dove_value + dove_update))
+            for connecting_node, distance in node.get_connections():
+                connecting_hawk_value, connecting_dove_value = connecting_node.get_value()
+
+                hawk_update += apply_heat_equation(hawk_value, connecting_hawk_value, a_hawk, distance/minimum_distance)
+                dove_update += apply_heat_equation(dove_value, connecting_dove_value, a_dove, distance/minimum_distance)
+
+            new_values.append( (hawk_value*(1 + hawk_update/n_connections), dove_value*(1 + dove_update/n_connections)))
+
+        else:
+            new_values.append( (hawk_value, dove_value))
 
     for i in range(0,len(nodes)):
         nodes[i].set_value(normalize_node(new_values[i]))
+
+    
