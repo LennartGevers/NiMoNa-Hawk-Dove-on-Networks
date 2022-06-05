@@ -1,4 +1,5 @@
 import numpy as np
+from src.model.normalization import norm_environment
 
 def _get_payoff_matrix(reward, harm):
 
@@ -11,11 +12,10 @@ def _replicate(value__vector, reward, harm, b=0):
     x = np.array(value__vector)
     M = _get_payoff_matrix(reward, harm)
 
-    payoffs = M.dot(x)
-    avg_payoffs = x.dot(payoffs)
-    normed_payoffs = (payoffs + b)/ (avg_payoffs + b)
+    payoff_coeffs = M.dot(x)
+    payoffs = (payoff_coeffs + b)
 
-    x = x*normed_payoffs
+    x = x*payoffs
 
     return (x[0], x[1])
 
@@ -28,6 +28,8 @@ def replicator_dynamics(nodes, t, reward_function, harm_function, b=0):
         node.set_value( _replicate( value_vector, 
                                     reward_function(t, value_vector, position),
                                     harm_function(t, value_vector, position), b=b))
+
+    norm_environment(nodes)
 
     
 
