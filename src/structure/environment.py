@@ -1,7 +1,8 @@
-from turtle import distance
 import numpy as np
+
 from src.structure.node import network_node
 from src.structure.visualize import visualize
+from src.model.normalization import norm_environment
 
 def update_connections(new_node, nodes, max_dist):
     for node in nodes:
@@ -31,6 +32,8 @@ def generate_environment(count, max_dist, seed=False):
         update_connections(node_i, nodes, max_dist)
 
         nodes.append(node_i)
+
+    norm_environment(nodes)
 
     return nodes
 
