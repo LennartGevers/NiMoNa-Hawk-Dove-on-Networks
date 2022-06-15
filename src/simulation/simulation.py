@@ -19,7 +19,9 @@ class simulation:
         #Interne Funktion zur Speicherung eines Netzwerkzustandes in der network_history Liste
         for i in range(0, len(self.environment)):
 
-            self.network_history[i].append(self.environment[i].getValue())
+            hawk_i, dove_i = self.environment[i].get_value()
+            self.network_history[i][0].append(hawk_i)
+            self.network_history[i][1].append(dove_i)
 
 
 
@@ -32,7 +34,7 @@ class simulation:
         #@param     {Integer}   [n_migrate]     Zahl der Anwendungen der Migrationsdynamik pro Entwicklungsschritt    
 
 
-        self.network_history = [None] * len(self.environment)
+        self.network_history = [[[], []]] * len(self.environment)
 
 
         for t in range(0, timesteps):
@@ -57,7 +59,7 @@ class simulation:
 
         #Methode wird nur ausgefueht wenn network_history keine Leere Liste ist, also run() seit initialisierung bereits durchgefuehrt wurde
         if(len(self.network_history)):
-            t = np.arange(0, len(self.network_history[0]))
+            t = np.arange(0, len(self.network_history[0][0]))
 
             #Plot der Entwicklungen der einzelnen Nodes
             for hawk_i, dove_i in self.network_history:
