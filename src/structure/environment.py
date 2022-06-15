@@ -17,7 +17,7 @@ def generate_environment(count, max_dist, seed=False):
     
     nodes = []
 
-    for _ in range(0, count):
+    for i in range(0, count):
         x_i = np.random.random()
         y_i = np.random.random()
 
@@ -25,7 +25,7 @@ def generate_environment(count, max_dist, seed=False):
 
         #Value Vector (x_1, x_2) where x_1 is hawks and x_2 is doves
 
-        val_vector = (val_i, 1 - val_i)
+        val_vector = (val_i, 1-val_i)
 
         node_i = network_node(x_i, y_i, val_vector)
 
