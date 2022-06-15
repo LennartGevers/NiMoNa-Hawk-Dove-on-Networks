@@ -3,7 +3,7 @@ from src.model.normalization import norm_environment
 def apply_heat_equation(x_1, x_2, a, dist):
     return a* (( x_2 - x_1) / dist)
 
-def heat_equation(nodes, a_hawk, a_dove, minimum_distance, b=0):
+def heat_equation(nodes, a_hawk, a_dove, minimum_distance):
 
     new_values = []
 
@@ -25,10 +25,10 @@ def heat_equation(nodes, a_hawk, a_dove, minimum_distance, b=0):
                 dove_update += apply_heat_equation(dove_value, connecting_dove_value, a_dove, distance/minimum_distance)
 
             #new_values.append( (hawk_value*(1 + hawk_update/n_connections), dove_value*(1 + dove_update/n_connections)))
-            new_values.append( (hawk_value + hawk_update + b/n, dove_value + dove_update + b/n))
+            new_values.append( (hawk_value + hawk_update, dove_value + dove_update))
 
         else:
-            new_values.append( (hawk_value + b/n, dove_value + b/n))
+            new_values.append( (hawk_value, dove_value) )
 
     for i in range(0,len(nodes)):
         nodes[i].set_value(new_values[i])
