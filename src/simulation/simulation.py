@@ -23,7 +23,7 @@ class simulation:
 
 
 
-    def run(self, timesteps, n_migrate=1):
+    def run(self, timesteps, background_fitness=0, n_migrate=1):
         #Durchfuehrung der Simulation
         #Fuehrt die Entwicklung des Modells an dem uebergebenen Netzwerk mit den
         #uebergebenen Replikator- und Migrationsfunktionen durch
@@ -38,7 +38,7 @@ class simulation:
         for t in range(0, timesteps):
 
             #Entwicklung des neuen Zustandes
-            replicator_dynamics(self.environment, t, self.reward, self.harm)
+            replicator_dynamics(self.environment, t, self.reward, self.harm, b=background_fitness)
 
             #Mehrfache Anwendung der Migrationsfunktion um Diskretisierungsfehler vorzubeugen
             for _ in range(0, n_migrate):
