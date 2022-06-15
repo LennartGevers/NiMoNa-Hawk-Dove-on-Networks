@@ -1,3 +1,6 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamics
 
 class simulation:
@@ -44,3 +47,31 @@ class simulation:
             self._save_environment()
 
         return self.network_history
+
+
+    def plot(self, plot_sum=True):
+        #Erstellt einen Plot einer durchgefuehrten Simulation
+        #Plottet die zeitliche Entwicklung der Werte der Netzwerkknoten
+
+        #@param {boolean} sum           Die Summe als Hawk bzw. Doves wird zusätzlich geplottet wenn dieser Parameter auf true steht
+
+        #Methode wird nur ausgefueht wenn network_history keine Leere Liste ist, also run() seit initialisierung bereits durchgefuehrt wurde
+        if(len(self.network_history)):
+            t = np.arange(0, len(self.network_history[0]))
+
+            #Plot der Entwicklungen der einzelnen Nodes
+            for hawk_i, dove_i in self.network_history:
+                plt.plot(t, hawk_i)
+                plt.plot(t, dove_i)
+
+            #Plot der Gesamtentwicklung des Netzwerks
+            if(plot_sum):
+
+                sum_hawks = sum( [ np.array(hawk_i) for hawk_i, dove_i in self.network_history])
+                sum_doves = sum( [ np.array(dove_i) for hawk_i, dove_i in self.network_history])
+
+                plt.plot(t, sum_hawks)
+                plt.plot(t, sum_doves)
+                    
+        else:
+            raise RuntimeError('Die Simulation wurde noch nicht durchgelaufen.')
