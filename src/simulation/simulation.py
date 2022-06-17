@@ -69,7 +69,7 @@ class simulation:
             t = np.arange(0, len(self.network_history[0][0]))
 
             #Plot der Entwicklungen der einzelnen Nodes
-            for hawk_i, dove_i in [self.network_history[0]]:
+            for hawk_i, dove_i in self.network_history:
                 plt.plot(t, hawk_i)
                 plt.plot(t, dove_i)
 
