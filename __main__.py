@@ -1,39 +1,32 @@
-from src.structure.environment import generate_environment, get_minimum_distance
+from src.simulation.simulation import simulation
+from src.structure.environment import generate_random_environment, generate_quadratic_environment, get_minimum_distance
 from src.structure.visualize import visualize
 
-from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamics
-from src.model.replicator_dynamics.payoff_parameter_functions import constant_harm, constant_reward
+from src.model.replicator_dynamics.payoff_parameter_functions import constant_harm, constant_reward, periodic_reward
 
-from src.model.heat_equation.heat_equation import heat_equation
+from src.model.migration_dynamics.heat_equation import heat_equation
+from src.model.migration_dynamics.no_migratrion import no_migration
+
+from src.simulation.simulation import simulation
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 #Modeling of the implementation of a heat-equation-like migration of species in the
 #hawk dove game.
 
-#Parameters of simulation:
+environment = generate_quadratic_environment(3, 3, 123)
+visualize(environment, 'greyscale')
 
-#Seed of simulation
-seed = 123
+# simulation = simulation(environment, constant_reward(1), constant_harm(1.5), no_migration)
+# simulation.run(256, background_fitness=1)
+# simulation.plot()
 
-#Number of nodes in the environment
-n = 50
-#Maximum distance for nodes to be connected to each other
-d_max = 0.15
+simulation = simulation(environment, periodic_reward(4, 8, 1), constant_harm(1.5), no_migration)
+simulation.run(256, background_fitness=1)
+simulation.plot()
 
-#Number of Time-discrete developments
-T = 100
+plt.axhline(0.333)
+plt.axhline(0.666)
 
-#Developmental Functions and usage per development
-
-#Simulation:
-environment = generate_environment(n, d_max, seed=seed)
-
-min_dist = get_minimum_distance(environment)
-
-harm_function = constant_harm(1.5)
-reward_function = constant_reward(1)
-
-for t in range(0,T):
-    heat_equation(environment, 0.1, 0, min_dist)
-    if(t % 20 == 0):
-        visualize(environment, 'greyscale', statistics=True)
-
+plt.show()

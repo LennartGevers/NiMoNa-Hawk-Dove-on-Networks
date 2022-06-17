@@ -13,7 +13,7 @@ def _replicate(value__vector, reward, harm, n, b=0):
     M = _get_payoff_matrix(reward, harm)
 
     payoff_coeffs = M.dot(x)
-    payoffs = (payoff_coeffs + b)*(1-0.05*np.sum(x))
+    payoffs = (payoff_coeffs + b)*(1-0.5*np.sum(x))
 
     x = x*payoffs
 
