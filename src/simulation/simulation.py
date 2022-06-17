@@ -24,8 +24,6 @@ class simulation:
             self.network_history[i][0].append(hawk_i)
             self.network_history[i][1].append(dove_i)
 
-        print(self.network_history)
-
     def _setup_history(self):
         self.network_history = []
         for i in range(0, len(self.environment)):
@@ -79,8 +77,9 @@ class simulation:
                 sum_hawks = sum( [ np.array(hawk_i) for hawk_i, dove_i in self.network_history])
                 sum_doves = sum( [ np.array(dove_i) for hawk_i, dove_i in self.network_history])
 
-                plt.plot(t, sum_hawks)
-                plt.plot(t, sum_doves)
+                plt.plot(t, sum_hawks, color='black')
+                plt.plot(t, sum_doves, color='black')
+                plt.plot(t, np.array(sum_hawks) + np.array(sum_doves), color='black')
                     
         else:
             raise RuntimeError('Die Simulation wurde noch nicht durchgelaufen.')
