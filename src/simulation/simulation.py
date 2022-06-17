@@ -20,10 +20,18 @@ class simulation:
         for i in range(0, len(self.environment)):
 
             hawk_i, dove_i = self.environment[i].get_value()
+            print(hawk_i)
             self.network_history[i][0].append(hawk_i)
             self.network_history[i][1].append(dove_i)
 
+        print(self.network_history)
 
+    def _setup_history(self):
+        self.network_history = []
+        for i in range(0, len(self.environment)):
+            self.network_history.append([])
+            self.network_history[i].append([])
+            self.network_history[i].append([])
 
     def run(self, timesteps, background_fitness=0, n_migrate=1):
         #Durchfuehrung der Simulation
@@ -34,8 +42,7 @@ class simulation:
         #@param     {Integer}   [n_migrate]     Zahl der Anwendungen der Migrationsdynamik pro Entwicklungsschritt    
 
 
-        self.network_history = [[[], []]] * len(self.environment)
-
+        self._setup_history()
 
         for t in range(0, timesteps):
 
@@ -57,12 +64,12 @@ class simulation:
 
         #@param {boolean} sum           Die Summe als Hawk bzw. Doves wird zusätzlich geplottet wenn dieser Parameter auf true steht
 
-        #Methode wird nur ausgefueht wenn network_history keine Leere Liste ist, also run() seit initialisierung bereits durchgefuehrt wurde
+        #Methode wird nur ausgefuehrt wenn network_history keine Leere Liste ist, also run() seit initialisierung bereits durchgefuehrt wurde
         if(len(self.network_history)):
             t = np.arange(0, len(self.network_history[0][0]))
 
             #Plot der Entwicklungen der einzelnen Nodes
-            for hawk_i, dove_i in self.network_history:
+            for hawk_i, dove_i in [self.network_history[0]]:
                 plt.plot(t, hawk_i)
                 plt.plot(t, dove_i)
 
