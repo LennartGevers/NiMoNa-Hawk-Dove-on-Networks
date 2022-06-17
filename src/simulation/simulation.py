@@ -6,13 +6,12 @@ from src.model.replicator_dynamics.replicator_dynamics import replicator_dynamic
 class simulation:
 
     def __init__(self, environment, reward_function, harm_function, migration_function):
-        self.environment = environment              #
-        self.reward = reward_function               #
-        self.harm = harm_function                   #
-        self.migrate = migration_function           #
+        self.environment = environment              #Liste der Netzwerk-Knoten
+        self.reward = reward_function               #Reward-Funktion mit Signatur reward(int t, float tuple (Werte des Nodes), position tuple)
+        self.harm = harm_function                   #Harm-Funktion mit Signatur reward(int t, float tuple (Werte des Nodes), position tuple)
+        self.migrate = migration_function           #Migrationsfunktion mit Signatur migration_function(list nodes)
 
         self.network_history = []                   #Liste der Entwicklungen aller Nodes, wobei diese jeweils Listen mit den Vektoren der Nodes zu jedem Zeitschritt sind
-
 
 
     def _save_environment(self):
@@ -24,6 +23,7 @@ class simulation:
             self.network_history[i][1].append(dove_i)
 
     def _setup_history(self):
+        #Vorbereitung der network_history Liste
         self.network_history = []
         for i in range(0, len(self.environment)):
             self.network_history.append([])
@@ -70,7 +70,7 @@ class simulation:
                 plt.plot(t, hawk_i)
                 plt.plot(t, dove_i)
 
-            #Plot der Gesamtentwicklung des Netzwerks
+            #Plot der Gesamtentwicklung des Netzwerks (Summen aller Netzwerke)
             if(plot_sum):
 
                 sum_hawks = sum( [ np.array(hawk_i) for hawk_i, dove_i in self.network_history])
