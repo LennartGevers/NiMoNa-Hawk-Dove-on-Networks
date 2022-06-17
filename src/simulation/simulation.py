@@ -77,8 +77,8 @@ class simulation:
                 sum_hawks = sum( [ np.array(hawk_i) for hawk_i, dove_i in self.network_history])
                 sum_doves = sum( [ np.array(dove_i) for hawk_i, dove_i in self.network_history])
 
-                plt.plot(t, sum_hawks, color='black')
-                plt.plot(t, sum_doves, color='black')
+                plt.plot(t, sum_hawks, color='navy')
+                plt.plot(t, sum_doves, color='orange')
                 plt.plot(t, np.array(sum_hawks) + np.array(sum_doves), color='black')
                     
         else:
