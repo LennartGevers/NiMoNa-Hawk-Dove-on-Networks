@@ -20,7 +20,6 @@ class simulation:
         for i in range(0, len(self.environment)):
 
             hawk_i, dove_i = self.environment[i].get_value()
-            print(hawk_i)
             self.network_history[i][0].append(hawk_i)
             self.network_history[i][1].append(dove_i)
 
