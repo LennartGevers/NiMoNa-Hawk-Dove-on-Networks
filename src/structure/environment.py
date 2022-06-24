@@ -51,6 +51,8 @@ def generate_quadratic_environment(n_height, n_width, seed=False):
         nodes = []
     for line in nodes_arr:
         nodes = nodes + line
+
+    norm_environment(nodes)
     return nodes
 
 

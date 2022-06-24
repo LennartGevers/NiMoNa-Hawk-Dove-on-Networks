@@ -30,7 +30,7 @@ class simulation:
             self.network_history[i].append([])
             self.network_history[i].append([])
 
-    def run(self, timesteps, background_fitness=0, n_migrate=1):
+    def run(self, timesteps, background_fitness=0, n_migrate=1, n_replicate=1):
         #Durchfuehrung der Simulation
         #Fuehrt die Entwicklung des Modells an dem uebergebenen Netzwerk mit den
         #uebergebenen Replikator- und Migrationsfunktionen durch
@@ -44,11 +44,12 @@ class simulation:
         for t in range(0, timesteps):
 
             #Entwicklung des neuen Zustandes
-            replicator_dynamics(self.environment, t, self.reward, self.harm, b=background_fitness)
+            for _ in range(0, n_replicate):
+                replicator_dynamics(self.environment, t, self.reward, self.harm, b=background_fitness)
 
             #Mehrfache Anwendung der Migrationsfunktion um Diskretisierungsfehler vorzubeugen
             for _ in range(0, n_migrate):
-                self.migrate(self.environment)
+                self.migrate(self.environment, t)
 
             self._save_environment()
 
@@ -76,8 +77,8 @@ class simulation:
                 sum_hawks = sum( [ np.array(hawk_i) for hawk_i, dove_i in self.network_history])
                 sum_doves = sum( [ np.array(dove_i) for hawk_i, dove_i in self.network_history])
 
-                plt.plot(t, sum_hawks, color='navy')
-                plt.plot(t, sum_doves, color='orange')
+                plt.plot(t, sum_hawks, color='navy', label='Summe Hawks')
+                plt.plot(t, sum_doves, color='orange', label='Summe Doves')
                 plt.plot(t, np.array(sum_hawks) + np.array(sum_doves), color='black')
                     
         else:
