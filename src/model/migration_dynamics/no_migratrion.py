@@ -1,2 +1,2 @@
-def no_migration(nodes):
+def no_migration(nodes, t):
     return
