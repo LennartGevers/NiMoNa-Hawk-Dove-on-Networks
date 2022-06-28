@@ -37,7 +37,7 @@ def berechne_uebergang(nodes, i, j, species, a):
 
 
 #Idee: Replikatiordynamik auf Diagonalelemente
-def uebergangsmatrix_matrix(nodes, t, a_hawk=0.5, a_dove=0.5, diag_hawk=0.5, diag_dove=0.5):
+def uebergangsmatrix_matrix(nodes, t, a_hawk=-0.3, a_dove=0.0, diag_hawk=0.9, diag_dove=0.9):
 
     matrix_hawk = np.zeros((len(nodes), len(nodes)))
     matrix_dove = np.zeros((len(nodes), len(nodes)))
@@ -55,7 +55,7 @@ def uebergangsmatrix_matrix(nodes, t, a_hawk=0.5, a_dove=0.5, diag_hawk=0.5, dia
         
         zeilen_summe_hawk_ohne_diag = np.sum(matrix_hawk[i])
         if(zeilen_summe_hawk_ohne_diag != 0):
-            norm_factor_hawk = diag_hawk/zeilen_summe_hawk_ohne_diag
+            norm_factor_hawk = (1-diag_hawk)/zeilen_summe_hawk_ohne_diag
             matrix_hawk[i] *= norm_factor_hawk
             matrix_hawk[i][i] = diag_hawk
         else:
@@ -64,7 +64,7 @@ def uebergangsmatrix_matrix(nodes, t, a_hawk=0.5, a_dove=0.5, diag_hawk=0.5, dia
 
         zeilen_summe_dove_ohne_diag = np.sum(matrix_dove[i])
         if(zeilen_summe_dove_ohne_diag != 0):
-            norm_factor_dove = diag_dove/zeilen_summe_dove_ohne_diag
+            norm_factor_dove = (1-diag_dove)/zeilen_summe_dove_ohne_diag
             matrix_dove[i] *= norm_factor_dove
             matrix_dove[i][i] = diag_dove
         else:
