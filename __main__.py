@@ -18,16 +18,11 @@ import numpy as np
 
 
 
-environment = generate_quadratic_environment(4, 4, 124)
-visualize(environment, 'greyscale')
+environment = generate_quadratic_environment(6, 6, 124)
+simulation = simulation(environment, periodic_reward(10, 5, 1), constant_harm(1.5), migration_function(uebergangsmatrix_matrix))
+simulation.run(512, background_fitness=1, n_migrate=1, n_replicate=1)
+simulation.plot_graph()
 
-simulation = simulation(environment, periodic_reward(3, 5, 1), constant_harm(1.5), migration_function(uebergangsmatrix_matrix))
-simulation.run(256, background_fitness=1, n_migrate=1, n_replicate=1)
-simulation.plot()
-
-#simulation = simulation(environment, periodic_reward_heigth_amplitude(3.5, 8, 1), constant_harm(1.5), no_migration)
-#simulation.run(256, background_fitness=0.4)
-#simulation.plot()
 
 plt.axhline(0.333)
 plt.axhline(0.666)
@@ -35,3 +30,5 @@ plt.axhline(0.666)
 plt.legend()
 
 plt.show()
+
+simulation.plot_network()
