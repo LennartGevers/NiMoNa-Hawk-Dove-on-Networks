@@ -91,7 +91,7 @@ class simulation:
 
         hawk_share = node.get_value()[0] / (val)
 
-        marker, = ax.plot(x,y, marker='.', markersize=max_markersize*(abs(val)), color=str(hawk_share))
+        marker, = ax.plot(x,y, marker='.', markersize=max_markersize*(abs(np.sqrt(val)))+2, color=str(0.6*hawk_share))
         return marker
 
     def draw_connection(self, ax, node_1, node_2):
@@ -100,7 +100,7 @@ class simulation:
 
         ax.plot([x1, x2], [y1, y2], marker='', color='black', linewidth=0.1)
 
-    def plot_network(self, max_markersize=32):
+    def plot_network(self, max_markersize=8):
         t_interval = np.arange(0, len(self.network_history[0][0]))
         
         # to run GUI event loop
@@ -126,10 +126,10 @@ class simulation:
 
                 hawk_share = self.network_history[i][0][t] / (val)
 
-                markers[i].set_markersize(max_markersize*len(self.environment)*(abs(val)))
-                markers[i].set_color(str(hawk_share))
+                markers[i].set_markersize(max_markersize*len(self.environment)*(abs(np.sqrt(val)))+2)
+                markers[i].set_color(str(0.6*hawk_share))
             
             figure.canvas.draw()
             figure.canvas.flush_events()
             
-            time.sleep(0.1)
+            time.sleep(0.02)
